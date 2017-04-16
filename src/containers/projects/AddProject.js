@@ -3,17 +3,17 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { Button, Icon } from 'semantic-ui-react'
 
-const AddTodo = ({onAddTodoClick}) =>
+const AddProject = ({onAddProjectClick}) =>
   <div className='button-container fluid'>
-    <Button animated='fade' onClick={onAddTodoClick}>
-      <Button.Content hidden>Add Todo</Button.Content>
+    <Button animated='fade' onClick={onAddProjectClick}>
+      <Button.Content hidden>Add Project</Button.Content>
       <Button.Content visible><Icon name='add' /></Button.Content>
     </Button>
   </div>
 
 const mapDispatchToProps = (dispatch) => ({
-  onAddTodoClick: () =>
-    dispatch(push('/todos/new'))
+  onAddProjectClick: () =>
+    dispatch(push('/projects/new'))
 })
 
-export default connect(null, mapDispatchToProps)(AddTodo)
+export default connect(null, mapDispatchToProps)(AddProject)
