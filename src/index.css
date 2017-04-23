@@ -5,6 +5,10 @@ body {
   height: 100%
 }
 
+.w-100 {
+  width: 100%
+}
+
 .child-center {
   margin: auto
 }
@@ -18,7 +22,14 @@ body {
 .button-container {
   text-align: center;
 }
+.header-container {
+  text-align: center;
+}
 
 .main {
   flex-grow: 1
+}
+
+.project {
+  padding: 12px;
 }

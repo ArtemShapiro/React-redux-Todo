@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Header } from 'semantic-ui-react'
+import Button from 'material-ui/Button'
 
-import ProjectsList from './projects/ProjectsList'
+import ProjectsList from '../containers/projects/ProjectsList'
 import AddProject from '../containers/projects/AddProject'
 
 class App extends Component {
@@ -13,7 +14,9 @@ class App extends Component {
     return (
       <div>
         <Header as='h2' className='aligned center'>Projects</Header>
-        <ProjectsList projects={this.props.projects} /><br />
+        <Button raised className='logout'>Sign out</Button>
+
+        <ProjectsList /><br />
         <AddProject />
       </div>
     )

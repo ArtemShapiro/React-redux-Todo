@@ -18,7 +18,6 @@ export const setToken = (headers) =>
 
 export const makeRequest = (url, actions = {}, method = 'get', data = false) =>
   (dispatch, getState) => {
-    console.log(url)
     return axios({
       url,
       data,

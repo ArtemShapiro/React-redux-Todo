@@ -1,14 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import { Button, Icon } from 'semantic-ui-react'
+// import { Button, Icon } from 'semantic-ui-react'
+import Button from 'material-ui/Button'
 
 const AddProject = ({onAddProjectClick}) =>
-  <div className='button-container fluid'>
-    <Button animated='fade' onClick={onAddProjectClick}>
-      <Button.Content hidden>Add Project</Button.Content>
-      <Button.Content visible><Icon name='add' /></Button.Content>
-    </Button>
+  <div className='button-container'>
+    <Button raised onClick={onAddProjectClick}>Add Project</Button>
   </div>
 
 const mapDispatchToProps = (dispatch) => ({

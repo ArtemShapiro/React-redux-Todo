@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Header, Button } from 'semantic-ui-react'
 import { Field } from 'redux-form'
 
-import SemanticUiInput from '../global/SemanticUiInput'
+import MaterialUiInput from '../global/MaterialUiInput'
 import { required } from '../global/validators'
 
 const AddProjectForm = ({handleSubmit, onCancel}) => {
@@ -12,7 +12,7 @@ const AddProjectForm = ({handleSubmit, onCancel}) => {
         <Header as='h2' className='aligned center'>Add Project</Header>
 
         <Field name='name' type='text'
-          placeholder='Project name' component={SemanticUiInput}
+          placeholder='Project name' component={MaterialUiInput}
           validate={required}
       />
 

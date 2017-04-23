@@ -1,22 +1,19 @@
 import React, { PropTypes } from 'react'
-import { Grid, Button, Icon } from 'semantic-ui-react'
+// import { Grid, Button, Icon } from 'semantic-ui-react'
+import Layout from 'material-ui/Layout'
 
-const Layout = ({children}) => (
-  <Grid columns={4} centered>
-    <Grid.Row>
-      <Button animated='fade' className='logout'>
-        <Button.Content visible><Icon name='sign out' /></Button.Content>
-        <Button.Content hidden>Logout</Button.Content>
-      </Button>
-      <Grid.Column>
+const ProjectsLayout = ({children}) => (
+  <Layout item xs={12}>
+    <Layout container justify='center'>
+      <Layout item xs={3}>
         {children}
-      </Grid.Column>
-    </Grid.Row>
-  </Grid>
+      </Layout>
+    </Layout>
+  </Layout>
 )
 
-Layout.propTypes = {
+ProjectsLayout.propTypes = {
   children: PropTypes.element.isRequired
 }
 
-export default Layout
+export default ProjectsLayout

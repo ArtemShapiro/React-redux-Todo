@@ -9,7 +9,6 @@ const signInRequestSuccess = (data) =>
 
 const signInRequestFailure = (error) => {
   if (error.response) {
-    console.log('Response error', error.response)
     throw new SubmissionError({ _error: error.response.data.errors[0] })
   }
   throw error
@@ -31,7 +30,6 @@ const signUpRequestSuccess = () =>
 
 const signUpRequestFailure = (error) => {
   if (error.response) {
-    console.log('Response error', error.response)
     throw new SubmissionError({ _error: error.response.data.errors.full_messages[0] })
   }
   throw error

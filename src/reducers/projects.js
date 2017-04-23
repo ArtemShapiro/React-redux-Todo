@@ -1,3 +1,5 @@
+import {filter} from 'lodash'
+
 const projects = (state = [], action) => {
   switch (action.type) {
     case 'ADD_PROJECT':
@@ -8,6 +10,8 @@ const projects = (state = [], action) => {
       return [
         ...action.projects
       ]
+    case 'DELETE_PROJECT':
+      return filter(state, (project) => project.id !== action.id)
     default:
       return state
   }
