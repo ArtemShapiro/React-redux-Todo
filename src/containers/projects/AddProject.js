@@ -3,10 +3,13 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 // import { Button, Icon } from 'semantic-ui-react'
 import Button from 'material-ui/Button'
+import AddIcon from 'material-ui-icons/Add'
 
 const AddProject = ({onAddProjectClick}) =>
-  <div className='button-container'>
-    <Button raised onClick={onAddProjectClick}>Add Project</Button>
+  <div className='button-add-project-container'>
+    <Button fab primary onClick={onAddProjectClick}>
+      <AddIcon />
+    </Button>
   </div>
 
 const mapDispatchToProps = (dispatch) => ({

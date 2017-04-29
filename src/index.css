@@ -19,8 +19,10 @@ body {
   right: 10px;
 }
 
-.button-container {
-  text-align: center;
+.button-add-project-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
 }
 .header-container {
   text-align: center;
@@ -32,4 +34,12 @@ body {
 
 .project {
   padding: 12px;
+}
+
+.act-as-flex {
+  flex: 1
+}
+
+.app-content {
+  padding-top: 64px
 }

@@ -1,7 +1,7 @@
 import React from 'react'
-// import { Grid } from 'semantic-ui-react'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
 import Layout from 'material-ui/Layout'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 const layout = ({children}) => (
   <MuiThemeProvider>

@@ -13,9 +13,6 @@ class App extends Component {
   render () {
     return (
       <div>
-        <Header as='h2' className='aligned center'>Projects</Header>
-        <Button raised className='logout'>Sign out</Button>
-
         <ProjectsList /><br />
         <AddProject />
       </div>

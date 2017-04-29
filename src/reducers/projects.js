@@ -1,4 +1,4 @@
-import {filter} from 'lodash'
+import { filter } from 'lodash'
 
 const projects = (state = [], action) => {
   switch (action.type) {
