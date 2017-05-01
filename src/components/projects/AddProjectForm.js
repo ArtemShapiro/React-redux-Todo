@@ -1,6 +1,7 @@
 import React from 'react'
-import {Form, Header, Button} from 'semantic-ui-react'
 import {Field} from 'redux-form'
+
+import RaisedButton from 'material-ui/RaisedButton'
 
 import MaterialUiInput from '../global/MaterialUiInput'
 import {required} from '../global/validators'
@@ -8,14 +9,18 @@ import {required} from '../global/validators'
 const AddProjectForm = ({handleSubmit, onCancel}) => {
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
-        <Header as='h2' className='aligned center'>Add Project</Header>
+      <form onSubmit={handleSubmit}>
+        <h3 className='aligned center'>Add Project</h3>
 
-        <Field name='name' type='text' placeholder='Project name' component={MaterialUiInput} validate={required}/>
+        <div>
+          <Field name='name' type='text' label='Project name' placeholder='Project' component={MaterialUiInput} validate={required}/>
+        </div>
 
-        <Button type='submit' className='fluid'>Create</Button>
-      </Form>
-      <Button className='fluid' negative onClick={onCancel}>Cancel</Button>
+        <div>
+          <RaisedButton label='Create' primary type='submit' className='w-100'/>
+          <RaisedButton label='Cancel' className='w-100' onTouchTap={onCancel} />
+        </div>
+      </form>
     </div>
   )
 }

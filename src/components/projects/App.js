@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { Header } from 'semantic-ui-react'
-import Button from 'material-ui/Button'
 
-import ProjectsList from '../containers/projects/ProjectsList'
-import AddProject from '../containers/projects/AddProject'
+import ProjectsList from '../../containers/projects/ProjectsList'
+import AddProject from '../../containers/projects/AddProject'
 
 class App extends Component {
   componentWillMount () {
@@ -13,7 +11,7 @@ class App extends Component {
   render () {
     return (
       <div>
-        <ProjectsList /><br />
+        <ProjectsList />
         <AddProject />
       </div>
     )

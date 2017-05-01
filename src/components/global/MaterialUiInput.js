@@ -1,13 +1,15 @@
 import React from 'react'
 import TextField from 'material-ui/TextField'
 
-const MaterialUiInput = ({input, meta: { touched, error }, type, placeholder}) => {
-  const valid = touched && error
+const MaterialUiInput = ({input, meta: { touched, error }, placeholder, label, ...other}) => {
   return (
     <TextField
-      label={valid ? error : placeholder}
-      error={valid ? true : false}
-      type={type}
+      errorText={touched && error}
+      floatingLabelText={label}
+      floatingLabelFixed={true}
+      hintText={placeholder}
+      fullWidth={true}
+      {...other}
       {...input}
     />
   )

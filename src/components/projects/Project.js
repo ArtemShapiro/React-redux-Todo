@@ -1,71 +1,40 @@
-import React, {Component} from 'react'
-// import { Card } from 'semantic-ui-react'
+import React from 'react'
 
-import TodosList from '../todos/TodosList'
+import TodosList from '../../containers/todos/TodosList'
 
-import {List, ListItem, ListItemText, ListItemSecondaryAction} from 'material-ui/List'
+import {List, ListItem} from 'material-ui/List'
 
-import Text from 'material-ui/Text'
 import Paper from 'material-ui/Paper'
-import Button from 'material-ui/Button'
-import Layout from 'material-ui/Layout'
 import Divider from 'material-ui/Divider'
-import Checkbox from 'material-ui/Checkbox'
-import TextField from 'material-ui/TextField'
 
-import IconButton from 'material-ui/IconButton'
-import MenuIcon from 'material-ui-icons/Menu'
-import MoreVertIcon from 'material-ui-icons/MoreVert'
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 
-import {Menu, MenuItem} from 'material-ui/Menu';
+import {grey400} from 'material-ui/styles/colors'
 
-// <ListItem button>Here</ListItem>
-export default class Project extends Component {
-  state = {
-    anchorEl: undefined,
-    open: false
-  }
+const IconButtonElement = (
+  <IconButton
+    touch={true}
+  >
+    <MoreVertIcon color={grey400} />
+  </IconButton>
+)
 
-  handleClick = (event) => this.setState({open: true, anchorEl: event.currentTarget})
-  handleRequestClose = () => this.setState({open: false, anchorEl: undefined})
+const Project = ({name, id, onDeleteClick, onAddTodoClick}) => (
+  <Paper className='paper'>
+    <List>
+      <ListItem primaryText={name} disabled rightIconButton={
+        <IconMenu iconButtonElement={IconButtonElement}>
+          <MenuItem onTouchTap={onAddTodoClick}>Add todo</MenuItem>
+          <MenuItem onTouchTap={onDeleteClick}>Delete project</MenuItem>
+        </IconMenu>
+      } />
+      <Divider/>
+      <TodosList projectId={id} />
+    </List>
+  </Paper>
+)
 
-  render() {
-    return (
-      <Paper className='paper'>
-        <List>
-          <ListItem>
-            <ListItemText primary={this.props.name}/>
-            <IconButton aria-owns="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
-              <MenuIcon/>
-            </IconButton>
-
-            <Menu id="simple-menu" anchorEl={this.state.anchorEl} open={this.state.open} onRequestClose={this.handleRequestClose}>
-              <MenuItem onClick={this.handleRequestClose}>Add Todo</MenuItem>
-              <MenuItem onClick={this.props.onDeleteClick}>Delete Project</MenuItem>
-            </Menu>
-          </ListItem>
-          <Divider/>
-          <TodosList/>
-        </List>
-      </Paper>
-    )
-  }
-}
-// <Button onClick={this.props.onDeleteClick}>Delete</Button>
-// <Layout item>
-//   <Text type="body2">
-//     {name}
-//   </Text>
-// </Layout>
-// <Layout item>
-//   <Button onClick={onDeleteClick}>Delete</Button>
-// </Layout>
-// <Layout container align='center' className='h-100'>
-//     <Layout item>
-//       <Text type="body2">
-//         {name}
-//       </Text>
-//     </Layout>
-//   </Layout>
-
-// export default Project
+export default Project

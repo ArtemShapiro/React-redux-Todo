@@ -1,6 +1,9 @@
 import { makeRequest } from './index'
+import { addTodos } from './todos'
+
 import { replace } from 'react-router-redux'
 import {SubmissionError} from 'redux-form'
+import { flatten } from 'lodash'
 
 // Actions for redux store
 
@@ -14,7 +17,10 @@ const addProject = (project) => ({
 
 const addProjects = (projects) => ({
   type: 'ADD_PROJECTS',
-  projects
+  projects: projects.map(project => ({
+    name: project.name,
+    id: project.id
+  }))
 })
 
 const deleteProject = (id) => ({
@@ -22,10 +28,13 @@ const deleteProject = (id) => ({
   id
 })
 
-const addProjectsRequestSuccess = (data) =>
-  addProjects(data)
+const loadProjectsRequestSuccess = (data) =>
+  dispatch => {
+    dispatch(addProjects(data))
+    dispatch(addTodos(flatten(data.map(project => project.todos))))
+  }
 
-const addProjectsRequestFailure = (error) => {
+const loadProjectsRequestFailure = (error) => {
   throw error
 }
 
@@ -33,16 +42,16 @@ const addProjectsRequestFailure = (error) => {
 export const loadProjects = () =>
   makeRequest(
     'http://127.0.0.1:4000/api/v1/projects',
-    { success: addProjectsRequestSuccess, failure: addProjectsRequestFailure }
+    { success: loadProjectsRequestSuccess, failure: loadProjectsRequestFailure }
   )
 
-const addProjectRequestSuccess = (data) =>
+const createProjectRequestSuccess = (data) =>
   dispatch => {
     dispatch(addProject(data))
     dispatch(replace('/'))
   }
 
-const addProjectRequestFailure = (error) => {
+const createProjectRequestFailure = (error) => {
   if (error.response) {
     throw new SubmissionError({ _error: error.response.data.errors.full_messages[0] })
   }
@@ -53,15 +62,15 @@ const addProjectRequestFailure = (error) => {
 export const createProject = (data) =>
   makeRequest(
     'http://127.0.0.1:4000/api/v1/projects',
-    { success: addProjectRequestSuccess, failure: addProjectRequestFailure },
+    { success: createProjectRequestSuccess, failure: createProjectRequestFailure },
     'post',
     data
   )
 
-const deleteProjectSuccess = (data) => () =>
+const desrtoyProjectSuccess = (data) => () =>
   deleteProject(data)
 
-const deleteProjectFailure = (error) => {
+const desrtoyProjectFailure = (error) => {
   throw error
 }
 
@@ -69,7 +78,7 @@ const deleteProjectFailure = (error) => {
 export const destroyProject = (data) => (
   makeRequest(
     `http://127.0.0.1:4000/api/v1/projects/${data}`,
-    { success: deleteProjectSuccess(data), failure: deleteProjectFailure },
+    { success: desrtoyProjectSuccess(data), failure: desrtoyProjectFailure },
     'delete',
     data
   )

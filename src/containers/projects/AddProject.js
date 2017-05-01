@@ -1,15 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-// import { Button, Icon } from 'semantic-ui-react'
-import Button from 'material-ui/Button'
-import AddIcon from 'material-ui-icons/Add'
+
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 const AddProject = ({onAddProjectClick}) =>
   <div className='button-add-project-container'>
-    <Button fab primary onClick={onAddProjectClick}>
-      <AddIcon />
-    </Button>
+    <FloatingActionButton onTouchTap={onAddProjectClick}>
+      <ContentAdd />
+    </FloatingActionButton>
   </div>
 
 const mapDispatchToProps = (dispatch) => ({

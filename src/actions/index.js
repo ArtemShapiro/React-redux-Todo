@@ -24,6 +24,7 @@ export const makeRequest = (url, actions = {}, method = 'get', data = false) =>
       method,
       headers: {...getState().headers}
     }).then(response => {
+      console.log(response)
       if (response.headers.uid) {
         dispatch(setToken(response.headers))
       }

@@ -11,22 +11,28 @@ import ReduxThunk from 'redux-thunk'
 import logger from 'redux-logger'
 
 import AppLayout from './components/AppLayout'
-import App from './containers/App'
+import FormLayout from './components/global/FormLayout'
+
+import App from './containers/projects/App'
 
 import SignInForm from './containers/authorization/SignInForm'
 import SignUpForm from './containers/authorization/SignUpForm'
-import AuthLayout from './components/authorization/Layout'
 
 import AddProjectForm from './containers/projects/AddProjectForm'
 import ProjectsLayout from './components/projects/Layout'
-import FormLayout from './components/projects/FormLayout'
+
+import AddTodoForm from './containers/todos/AddTodoForm'
 
 import { setHeaders } from './actions'
 
 import todoApp from './reducers'
 
+import injectTapEventPlugin from 'react-tap-event-plugin'
+injectTapEventPlugin()
+
 import 'semantic-ui-css/semantic.min.css'
 import './index.css'
+import './grid.css'
 
 let store = createStore(todoApp, applyMiddleware(ReduxThunk, routerMiddleware(hashHistory), logger))
 
@@ -50,9 +56,10 @@ render(
 
         <Route component={FormLayout} onEnter={authorized}>
           <Route path='/projects/new' component={AddProjectForm} />
+          <Route path='/projects/:id/todos/new' component={AddTodoForm} />
         </Route>
 
-        <Route component={AuthLayout}>
+        <Route component={FormLayout}>
           <Route path='/sign-in' component={SignInForm} />
           <Route path='/sign-up' component={SignUpForm} />
         </Route>

@@ -1,17 +1,16 @@
 import React from 'react'
-import Layout from 'material-ui/Layout'
 
-import Project from './Project'
+import Project from '../../containers/projects/Project'
 
-const ProjectsList = ({projects, onDeleteClick}) => {
+const ProjectsList = ({projects}) => {
   return (
-    <Layout gutter={16} container direction='column'>
+    <div className='columns is-multiline'>
       {projects.map((project, index) =>
-        <Layout item key={index}>
-          <Project onDeleteClick={() => onDeleteClick(project.id)} {...project} />
-        </Layout>
+        <div key={index} className='column is-12'>
+          <Project {...project} />
+        </div>
       )}
-    </Layout>
+    </div>
   )
 }
 
