@@ -15,6 +15,14 @@ const addProject = (project) => ({
   }
 })
 
+const patchProject = (project) => ({
+  type: 'PATCH_PROJECT',
+  project: {
+    name: project.name,
+    id: project.id
+  }
+})
+
 const addProjects = (projects) => ({
   type: 'ADD_PROJECTS',
   projects: projects.map(project => ({
@@ -67,6 +75,28 @@ export const createProject = (data) =>
     data
   )
 
+const updateProjectRequestSuccess = (data) =>
+  dispatch => {
+    dispatch(patchProject(data))
+    dispatch(replace('/'))
+  }
+
+const updateProjectRequestFailure = (error) => {
+  if (error.response) {
+    throw new SubmissionError({ _error: error.response.data.errors.full_messages[0] })
+  }
+  throw error
+}
+
+// updateProject action to patch a project
+export const updateProject = (data) =>
+  makeRequest(
+    `http://127.0.0.1:4000/api/v1/projects/${data.id}`,
+    { success: updateProjectRequestSuccess, failure: updateProjectRequestFailure },
+    'patch',
+    data
+  )
+
 const desrtoyProjectSuccess = (data) => () =>
   deleteProject(data)
 
@@ -79,7 +109,6 @@ export const destroyProject = (data) => (
   makeRequest(
     `http://127.0.0.1:4000/api/v1/projects/${data}`,
     { success: desrtoyProjectSuccess(data), failure: desrtoyProjectFailure },
-    'delete',
-    data
+    'delete'
   )
 )

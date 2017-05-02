@@ -9,9 +9,10 @@ class App extends Component {
   }
 
   render () {
+    const routeParams = this.props.routeParams
     return (
       <div>
-        <ProjectsList />
+        <ProjectsList routeParams={routeParams} />
         <AddProject />
       </div>
     )

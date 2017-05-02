@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import ContentAdd from 'material-ui/svg-icons/content/add'
 
 const AddProject = ({onAddProjectClick}) =>
   <div className='button-add-project-container'>
@@ -14,7 +14,7 @@ const AddProject = ({onAddProjectClick}) =>
 
 const mapDispatchToProps = (dispatch) => ({
   onAddProjectClick: () =>
-    dispatch(push('/projects/new'))
+    dispatch(push('/project/new'))
 })
 
 export default connect(null, mapDispatchToProps)(AddProject)

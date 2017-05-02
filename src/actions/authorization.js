@@ -2,7 +2,7 @@ import { makeRequest } from './index'
 import { replace } from 'react-router-redux'
 import {SubmissionError} from 'redux-form'
 
-const signInRequestSuccess = (data) =>
+const signInRequestSuccess = () =>
   (dispatch) => {
     dispatch(replace('/'))
   }

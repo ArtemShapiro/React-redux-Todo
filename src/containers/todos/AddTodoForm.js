@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(replace('/'))
   },
   onSubmit: (values) => (
-    dispatch(createTodo({ ...values, project_id: ownProps.routeParams.id }))
+    dispatch(createTodo({ ...values, projectId: ownProps.routeParams.id }))
   )
 })
 

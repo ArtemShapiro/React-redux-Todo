@@ -41,8 +41,17 @@ body {
 }
 
 .form-container {
+  display: flex;
   flex: 1;
-  align-items: center
+  align-items: center;
+}
+
+.w-77 {
+  width: 77%
+}
+
+.w-33 {
+  width: 33%
 }
 
 .app-content {

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
 
 import { routerMiddleware } from 'react-router-redux'
-import { Router, Route, hashHistory, IndexRoute } from 'react-router'
+import { Router, Route, hashHistory, IndexRedirect } from 'react-router'
 
 import * as Cookies from 'js-cookie'
 import ReduxThunk from 'redux-thunk'
@@ -51,12 +51,13 @@ render(
     <Router history={hashHistory}>
       <Route path='/' component={AppLayout}>
         <Route component={ProjectsLayout} onEnter={authorized}>
-          <IndexRoute component={App} />
+          <IndexRedirect to='/projects' />
+          <Route path='/projects(/:id)(/todos/:todo_id)' component={App} />
         </Route>
 
         <Route component={FormLayout} onEnter={authorized}>
-          <Route path='/projects/new' component={AddProjectForm} />
-          <Route path='/projects/:id/todos/new' component={AddTodoForm} />
+          <Route path='/project/new' component={AddProjectForm} />
+          <Route path='/projects/:id/todo/new' component={AddTodoForm} />
         </Route>
 
         <Route component={FormLayout}>

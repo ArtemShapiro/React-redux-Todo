@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton'
 
 const ProjectsLayout = ({children}) => (
   <div>
-    <AppBar title='Todo List' iconElementRight={<FlatButton label='Sign out'/>}/>
+    <AppBar title='Todo List' showMenuIconButton={false} iconElementRight={<FlatButton label='Sign out'/>}/>
     <div className='columns app-content'>
       <div className='column is-4 is-offset-4'>
         {children}
