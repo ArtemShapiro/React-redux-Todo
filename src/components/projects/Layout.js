@@ -1,13 +1,15 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import AppBar from 'material-ui/AppBar'
-import FlatButton from 'material-ui/FlatButton'
+
+import SignOutButton from '../../containers/authorization/SignOutButton'
 
 const ProjectsLayout = ({children}) => (
-  <div>
-    <AppBar title='Todo List' showMenuIconButton={false} iconElementRight={<FlatButton label='Sign out'/>}/>
-    <div className='columns app-content'>
-      <div className='column is-4 is-offset-4'>
+  <div className='h-100'>
+    <AppBar title='Task List' showMenuIconButton={false} iconElementRight={<SignOutButton />}/>
+    <div className='columns app-content h-100'>
+      <div className='column is-4 is-offset-4 h-100'>
         {children}
       </div>
     </div>

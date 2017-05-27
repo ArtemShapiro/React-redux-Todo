@@ -4,7 +4,7 @@ import { signUp } from '../../actions/authorization'
 import SignUpForm from '../../components/authorization/SignUpForm'
 
 const onSubmit = (values, dispatch) => (
-  dispatch(signUp(values, dispatch))
+  dispatch(signUp(values))
 )
 
 let signUpForm = reduxForm({form: 'signUp', onSubmit})(SignUpForm)

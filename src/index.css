@@ -1,4 +1,9 @@
+body, html {
+    height: 100%;
+}
 body {
+  margin: 0;
+  padding: 0
 }
 
 .h-100 {
@@ -7,10 +12,6 @@ body {
 
 .w-100 {
   width: 100%
-}
-
-.child-center {
-  margin: auto
 }
 
 .logout {
@@ -28,22 +29,105 @@ body {
   text-align: center;
 }
 
+/*needs for check*/
 .main {
   flex-grow: 1
+}
+
+.no-projects-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column
+}
+
+.no-projects-label {
+  font-size: 20px;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif
+}
+
+.no-tasks-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column
+}
+
+.no-tasks-label {
+  font-size: 20px;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif
 }
 
 .project {
   padding: 12px;
 }
 
-.act-as-flex {
-  flex: 1
+.circle-progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px
 }
 
 .form-container {
   display: flex;
   flex: 1;
   align-items: center;
+}
+
+.form {
+  padding: 10px
+}
+
+.form-button {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+}
+
+.form-button-facebook {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.comment-button-container {
+  padding-left: 8px;
+  padding-bottom: 36px;
+  align-self: flex-end
+}
+.comment-icon-container {
+  /*padding-left: 24px;*/
+  padding-bottom: 30px;
+  align-self: flex-end
+}
+
+.input-file {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+}
+
+.project-button-container {
+  align-self: flex-start;
+  padding-left: 16px;
+  padding-top: 8px
+}
+
+.task-button-container {
+  align-self: flex-end;
+  padding-left: 16px;
+  padding-bottom: 8px
+}
+
+.comments-container {
+  padding-bottom: 24px;
 }
 
 .w-77 {

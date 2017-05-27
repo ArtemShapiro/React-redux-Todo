@@ -1,9 +1,15 @@
 import { connect } from 'react-redux'
 
+import { loadProjects } from '../../actions/projects'
 import ProjectsList from '../../components/projects/ProjectsList'
 
 const mapStateToProps = (state) => ({
-  projects: state.projects
+  projects: state.projects.data,
+  loading: state.projects.loading
 })
 
-export default connect(mapStateToProps)(ProjectsList)
+const mapDispatchToProps = {
+  loadProjects
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectsList)

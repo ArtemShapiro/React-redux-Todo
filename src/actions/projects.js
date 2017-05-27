@@ -1,8 +1,7 @@
 import { makeRequest } from './index'
-import { addTodos } from './todos'
+import { addTasks } from './tasks'
 
 import { replace } from 'react-router-redux'
-import {SubmissionError} from 'redux-form'
 import { flatten } from 'lodash'
 
 // Actions for redux store
@@ -11,7 +10,7 @@ const addProject = (project) => ({
   type: 'ADD_PROJECT',
   project: {
     name: project.name,
-    id: project.id
+    id:   project.id
   }
 })
 
@@ -19,7 +18,7 @@ const patchProject = (project) => ({
   type: 'PATCH_PROJECT',
   project: {
     name: project.name,
-    id: project.id
+    id:   project.id
   }
 })
 
@@ -27,7 +26,7 @@ const addProjects = (projects) => ({
   type: 'ADD_PROJECTS',
   projects: projects.map(project => ({
     name: project.name,
-    id: project.id
+    id:   project.id
   }))
 })
 
@@ -36,10 +35,14 @@ const deleteProject = (id) => ({
   id
 })
 
+const projectsLoadRequest = () => ({
+  type: 'PROJECTS_LOAD_REQUEST'
+})
+
 const loadProjectsRequestSuccess = (data) =>
   dispatch => {
     dispatch(addProjects(data))
-    dispatch(addTodos(flatten(data.map(project => project.todos))))
+    dispatch(addTasks(flatten(data.map(project => project.tasks))))
   }
 
 const loadProjectsRequestFailure = (error) => {
@@ -48,10 +51,13 @@ const loadProjectsRequestFailure = (error) => {
 
 // loadProjects action to load projects for the current
 export const loadProjects = () =>
-  makeRequest(
-    'http://127.0.0.1:4000/api/v1/projects',
-    { success: loadProjectsRequestSuccess, failure: loadProjectsRequestFailure }
-  )
+  dispatch => {
+    dispatch(projectsLoadRequest())
+    dispatch(makeRequest(
+      'http://127.0.0.1:4000/api/v1/projects',
+      { success: loadProjectsRequestSuccess, failure: loadProjectsRequestFailure }
+    ))
+  }
 
 const createProjectRequestSuccess = (data) =>
   dispatch => {
@@ -60,9 +66,6 @@ const createProjectRequestSuccess = (data) =>
   }
 
 const createProjectRequestFailure = (error) => {
-  if (error.response) {
-    throw new SubmissionError({ _error: error.response.data.errors.full_messages[0] })
-  }
   throw error
 }
 
@@ -82,9 +85,6 @@ const updateProjectRequestSuccess = (data) =>
   }
 
 const updateProjectRequestFailure = (error) => {
-  if (error.response) {
-    throw new SubmissionError({ _error: error.response.data.errors.full_messages[0] })
-  }
   throw error
 }
 

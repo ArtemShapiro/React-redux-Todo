@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import UpdateProjectForm from '../../containers/projects/UpdateProjectForm'
-import TodosList from '../../containers/todos/TodosList'
+import TasksList from '../../containers/tasks/TasksList'
 
 import Paper from 'material-ui/Paper'
 import Divider from 'material-ui/Divider'
@@ -20,11 +21,11 @@ const IconButtonElement = (
   </IconButton>
 )
 
-const Project = ({name, id, onDeleteClick, onAddTodoClick, onUpdateProjectClick, editable, routeParams}) => {
+const Project = ({name, id, onDeleteClick, onAddTaskClick, onUpdateProjectClick, editable, routeParams}) => {
   const headerElement = (
     <ListItem primaryText={name} disabled rightIconButton={
       <IconMenu iconButtonElement={IconButtonElement}>
-        <MenuItem onTouchTap={onAddTodoClick}>Add todo</MenuItem>
+        <MenuItem onTouchTap={onAddTaskClick}>Add task</MenuItem>
         <MenuItem onTouchTap={onUpdateProjectClick}>Update project</MenuItem>
         <MenuItem onTouchTap={onDeleteClick}>Delete project</MenuItem>
       </IconMenu>
@@ -32,15 +33,24 @@ const Project = ({name, id, onDeleteClick, onAddTodoClick, onUpdateProjectClick,
   )
   const form = (<UpdateProjectForm name={name} id={id} />)
   const header = editable ? form : headerElement
-
   return (
     <Paper className='paper'>
       <List>
         {header}
         <Divider/>
-        <TodosList projectId={id} routeParams={routeParams} />
+        <TasksList projectId={id} routeParams={routeParams} />
       </List>
     </Paper>
   )
 }
+
+Project.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  editable: PropTypes.bool.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
+  onAddTaskClick: PropTypes.func.isRequired,
+  onUpdateProjectClick: PropTypes.func.isRequired,
+}
+
 export default Project

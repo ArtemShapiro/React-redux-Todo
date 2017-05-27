@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-const layout = ({children}) => (
+const AppLayout = ({children}) => (
   <MuiThemeProvider>
     <div className='main h-100'>
       {children}
@@ -10,4 +11,8 @@ const layout = ({children}) => (
   </MuiThemeProvider>
 )
 
-export default layout
+AppLayout.propTypes = {
+  children: PropTypes.element.isRequired
+}
+
+export default AppLayout

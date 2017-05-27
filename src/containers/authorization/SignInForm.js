@@ -7,5 +7,4 @@ const onSubmit = (values, dispatch) => (
   dispatch(signIn(values))
 )
 
-let signInForm = reduxForm({form: 'signIn', onSubmit})(SignInForm)
-export default signInForm
+export default reduxForm({form: 'signIn', onSubmit})(SignInForm)

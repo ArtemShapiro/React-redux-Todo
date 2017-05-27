@@ -1,35 +1,41 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import {Field} from 'redux-form'
 import {Link} from 'react-router'
-import {Message} from 'semantic-ui-react'
 
+import Paper from 'material-ui/Paper'
+import SendIcon from 'material-ui/svg-icons/content/send'
 import RaisedButton from 'material-ui/RaisedButton'
+import FlatButton from 'material-ui/FlatButton'
 
+import FormError from '../global/FormError'
 import MaterialUiInput from '../global/MaterialUiInput'
 import {required, email, passwordLength} from '../global/validators'
 
+// Create modal with error
 const SignUpForm = ({handleSubmit, error}) => (
-  <div>
-    <form onSubmit={handleSubmit}>
-      <h3 className='header-container'>Sign Up</h3>
+  <Paper zDepth={2}>
+    <div className='form'>
+      <form onSubmit={handleSubmit}>
+        <h3 className='header-container'>Sign Up</h3>
 
-      {error && <Message error content={error}/>}
-
-      <div>
-        <Field type='text' name='email' label='Email' placeholder='example@example.com' component={MaterialUiInput} validate={[required, email]}/>
-      </div>
-      <div>
-        <Field type='password' name='password' label='Password' placeholder='12345678' component={MaterialUiInput} validate={[required, passwordLength]}/>
-      </div>
-      <div>
-        <Field type='password' name='passwordConfirmation' label='Confirm Password' placeholder='12345678' component={MaterialUiInput} validate={[required, passwordLength]}/>
-      </div>
-      <div>
-        <RaisedButton label='Sign up' primary type='submit' className='w-100'/>
-        <Link to='/sign-in'>Already have account?</Link>
-      </div>
-    </form>
-  </div>
+        <div>
+          <Field type='text' name='email' label='Email' placeholder='example@example.com' component={MaterialUiInput} validate={[required, email]}/>
+        </div>
+        <div>
+          <Field type='password' name='password' label='Password' placeholder='12345678' component={MaterialUiInput} validate={[required, passwordLength]}/>
+        </div>
+        <div>
+          <Field type='password' name='passwordConfirmation' label='Confirm Password' placeholder='12345678' component={MaterialUiInput} validate={[required, passwordLength]}/>
+        </div>
+        <div className='form-button'>
+          <FlatButton containerElement={<Link to='/sign-in' />} label='Sign in' />
+          <RaisedButton label='Sign up' primary type='submit' icon={<SendIcon />} />
+        </div>
+      </form>
+      <FormError error={error} title={'Sign Up Error'} />
+    </div>
+  </Paper>
 )
 
 SignUpForm.propTypes = {

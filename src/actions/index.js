@@ -4,9 +4,10 @@ import * as Cookies from 'js-cookie'
 export const setHeaders = (headers) => ({
   type: 'SET_HEADERS',
   headers: {
-    access_token: headers['access-token'],
-    client: headers.client,
-    uid: headers.uid
+    access_token: headers['access-token'] || headers.auth_token,
+    client:       headers.client || headers.client_id,
+    expiry:       headers.expiry,
+    uid:          headers.uid
   }
 })
 

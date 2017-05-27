@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
@@ -11,6 +12,10 @@ const AddProject = ({onAddProjectClick}) =>
       <ContentAdd />
     </FloatingActionButton>
   </div>
+
+AddProject.propTypes = {
+  onAddProjectClick: PropTypes.func.isRequired
+}
 
 const mapDispatchToProps = (dispatch) => ({
   onAddProjectClick: () =>

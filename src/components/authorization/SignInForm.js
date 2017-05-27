@@ -1,30 +1,43 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import {Link} from 'react-router'
 import {Field} from 'redux-form'
-import {Message} from 'semantic-ui-react'
-import RaisedButton from 'material-ui/RaisedButton'
 
+import Paper from 'material-ui/Paper'
+import LoginIcon from 'material-ui/svg-icons/action/exit-to-app'
+import RaisedButton from 'material-ui/RaisedButton'
+import FlatButton from 'material-ui/FlatButton'
+
+import FormError from '../global/FormError'
 import MaterialUiInput from '../global/MaterialUiInput'
 import {required, email, passwordLength} from '../global/validators'
 
 const SignInForm = ({handleSubmit, error}) => {
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h3 className='header-container'>Sign in</h3>
-        {error && <Message error content={error}/>}
-        <div>
-          <Field name='email' type='text' label='Email' placeholder='example@example.com' component={MaterialUiInput} validate={[required, email]}/>
-        </div>
-        <div>
-          <Field name='password' type='password' label='Password' placeholder='12345678' component={MaterialUiInput} validate={[required, passwordLength]}/>
-        </div>
-        <div>
-          <RaisedButton label='Sign in' primary type='submit' className='w-100'/>
-          <Link to='/sign-up' className='aligned center'>Don't have account?</Link>
-        </div>
-      </form>
-    </div>
+    <Paper zDepth={2}>
+      <div className='form'>
+        <form onSubmit={handleSubmit}>
+          <h3 className='header-container'>Sign in</h3>
+
+          <div>
+            <Field name='email' type='text' label='Email' placeholder='example@example.com' component={MaterialUiInput} validate={[required, email]}/>
+          </div>
+          <div>
+            <Field name='password' type='password' label='Password' placeholder='12345678' component={MaterialUiInput} validate={[required, passwordLength]}/>
+          </div>
+
+          <div className='form-button'>
+            <FlatButton containerElement={<Link to='/sign-up' />} label='Sign up' />
+            <RaisedButton label='Sign in' primary type='submit' icon={<LoginIcon />} />
+          </div>
+
+          <div className='form-button-facebook'>
+            <RaisedButton label='Facebook' backgroundColor={'#4267b2'} labelColor={'#FAFAFA'} icon={<LoginIcon />} href='http://127.0.0.1:4000/api/v1/auth/facebook?origin=http://localhost:3000' />
+          </div>
+        </form>
+        <FormError error={error} title={'Sign In Error'} />
+      </div>
+    </Paper>
   )
 }
 

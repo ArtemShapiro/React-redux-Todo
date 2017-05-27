@@ -5,10 +5,6 @@ import { replace } from 'react-router-redux'
 import UpdateProjectForm from '../../components/projects/UpdateProjectForm'
 import { updateProject } from '../../actions/projects'
 
-const mapStateToProps = (state) => ({
-  state
-})
-
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onCancel: () => {
     dispatch(replace('/'))
@@ -19,5 +15,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 })
 
 let updateProjectForm = reduxForm({ form: 'updateProject' })(UpdateProjectForm)
-
-export default connect(mapStateToProps, mapDispatchToProps)(updateProjectForm)
+export default connect(null, mapDispatchToProps)(updateProjectForm)

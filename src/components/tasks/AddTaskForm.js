@@ -1,28 +1,27 @@
 import React from 'react'
-import {Field} from 'redux-form'
-import {Link} from 'react-router'
 import PropTypes from 'prop-types'
+import {Field} from 'redux-form'
 
 import Paper from 'material-ui/Paper'
 import SendIcon from 'material-ui/svg-icons/content/send'
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
 
-import {required} from '../global/validators'
 import MaterialUiInput from '../global/MaterialUiInput'
+import {required} from '../global/validators'
 
-const AddProjectForm = ({handleSubmit}) => (
+const AddTaskForm = ({handleSubmit, onCancel}) => (
   <Paper zDepth={2}>
     <div className='form'>
       <form onSubmit={handleSubmit}>
-        <h3 className='header-container'>Add Project</h3>
+        <h3 className='header-container'>Add Task</h3>
 
         <div>
-          <Field name='name' type='text' label='Project name' placeholder='Project' component={MaterialUiInput} validate={required} />
+          <Field name='name' type='text' label='Task name' placeholder='Buy milk' component={MaterialUiInput} validate={required} />
         </div>
 
         <div className='form-button'>
-          <FlatButton label='Cancel' containerElement={<Link to='/' />} />
+          <FlatButton label='Cancel' onTouchTap={onCancel} />
           <RaisedButton label='Create' primary type='submit' icon={<SendIcon />}/>
         </div>
       </form>
@@ -30,8 +29,9 @@ const AddProjectForm = ({handleSubmit}) => (
   </Paper>
 )
 
-AddProjectForm.propTypes = {
+AddTaskForm.propTypes = {
+  onCancel: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired
 }
 
-export default AddProjectForm
+export default AddTaskForm

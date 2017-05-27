@@ -1,5 +1,6 @@
 import React from 'react'
 import {Field} from 'redux-form'
+import PropTypes from 'prop-types'
 
 import {ListItem} from 'material-ui/List'
 
@@ -17,18 +18,26 @@ const UpdateProjectForm = ({handleSubmit, onCancel, name}) => {
     <ListItem disabled>
       <form onSubmit={handleSubmit}>
           <div className='form-container'>
-            <div className='w-77'>
+            <div className='w-100'>
               <Field name='name' type='text' label='Project name' placeholder='Project' defaultValue={name} component={MaterialUiInput} validate={required}/>
             </div>
 
-            <div className='w-33'>
+            <div className='project-button-container'>
               <RaisedButton icon={<ActionDone color={white800} />} primary type='submit' />
+            </div>
+            <div className='project-button-container'>
               <RaisedButton icon={<ActionClear color={red800}/>} onTouchTap={onCancel} />
             </div>
           </div>
       </form>
     </ListItem>
   )
+}
+
+UpdateProjectForm.propTypes = {
+  name: PropTypes.string.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 }
 
 export default UpdateProjectForm

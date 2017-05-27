@@ -1,14 +1,18 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
+import tasks from './tasks'
 import headers from './headers'
 import projects from './projects'
-import todos from './todos'
+import comments from './comments'
+import attachments from './attachments'
 
 const todoApp = combineReducers({
+  tasks,
   headers,
   projects,
-  todos,
+  comments,
+  attachments,
   form: formReducer
 })
 

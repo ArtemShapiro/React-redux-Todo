@@ -1,22 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import ProjectsList from '../../containers/projects/ProjectsList'
 import AddProject from '../../containers/projects/AddProject'
 
-class App extends Component {
-  componentWillMount () {
-    this.props.loadProjects()
-  }
+const App = ({routeParams}) => (
+  <div className='h-100'>
+    <ProjectsList routeParams={routeParams} />
+    <AddProject />
+  </div>
+)
 
-  render () {
-    const routeParams = this.props.routeParams
-    return (
-      <div>
-        <ProjectsList routeParams={routeParams} />
-        <AddProject />
-      </div>
-    )
-  }
+
+App.propTypes = {
+  routeParams: PropTypes.shape({
+    task_id: PropTypes.string,
+    id: PropTypes.string
+  })
 }
 
 export default App
