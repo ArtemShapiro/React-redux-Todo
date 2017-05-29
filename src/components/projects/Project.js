@@ -23,13 +23,15 @@ const IconButtonElement = (
 
 const Project = ({name, id, onDeleteClick, onAddTaskClick, onUpdateProjectClick, editable}) => {
   const headerElement = (
-    <ListItem primaryText={name} disabled rightIconButton={
+    <ListItem style={{'wordWrap': 'break-word'}} disabled rightIconButton={
       <IconMenu iconButtonElement={IconButtonElement}>
         <MenuItem onTouchTap={onAddTaskClick}>Add task</MenuItem>
         <MenuItem onTouchTap={onUpdateProjectClick}>Update project</MenuItem>
         <MenuItem onTouchTap={onDeleteClick}>Delete project</MenuItem>
       </IconMenu>
-    } />
+    }>
+      {name} 
+    </ListItem>
   )
   const form = (<UpdateProjectForm name={name} id={id} />)
   const header = editable ? form : headerElement

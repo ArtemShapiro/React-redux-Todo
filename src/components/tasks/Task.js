@@ -22,15 +22,16 @@ const IconButtonElement = (
 const TaskElement = ({task, deadline, onUpdateTaskClick, onDeleteClick, onMoreInfoClick, onCheckboxClick}) => {
   return (
     <div>
-      <ListItem leftCheckbox={<Checkbox checked={task.done} onTouchTap={onCheckboxClick} />} primaryText={task.name} secondaryText={deadline || ''}
+      <ListItem style={{'wordWrap': 'break-word'}} leftCheckbox={<Checkbox checked={task.done} onTouchTap={onCheckboxClick} />} secondaryText={deadline || ''}
         rightIconButton={
           <IconMenu iconButtonElement={IconButtonElement}>
             <MenuItem onTouchTap={onMoreInfoClick}>More Info</MenuItem>
             <MenuItem onTouchTap={onUpdateTaskClick}>Edit Task</MenuItem>
             <MenuItem onTouchTap={onDeleteClick}>Delete Task</MenuItem>
           </IconMenu>
-        }
-      />
+        }>
+        {task.name}
+      </ListItem>
     </div>
   )
 }

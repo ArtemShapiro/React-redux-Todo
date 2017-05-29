@@ -23,7 +23,7 @@ const Comment = ({text, createdAt, onDeleteClick, link}) => {
     <div>
       <ListItem
         disabled
-        style={{'whiteSpace': 'pre-line'}}
+        style={{'whiteSpace': 'pre-line', 'wordWrap': 'break-word'}}
         secondaryText={`Created at: ${createdAt}`}
         rightIconButton={
           <IconMenu iconButtonElement={IconButtonElement}>
@@ -31,7 +31,7 @@ const Comment = ({text, createdAt, onDeleteClick, link}) => {
             <MenuItem onTouchTap={onDeleteClick}>Delete comment</MenuItem>
           </IconMenu>
         }>
-        {text}
+        <p>{text}</p>
       </ListItem>
       <Divider />
     </div>
