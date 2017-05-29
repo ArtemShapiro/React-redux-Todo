@@ -13,12 +13,12 @@ class ProjectsList extends Component {
   }
 
   render () {
-    const { projects, routeParams, loading } = this.props
+    const { projects, loading } = this.props
     const child = (projects.length > 0 ) ? (
       <div className='columns is-multiline'>
         {projects.map((project, index) => (
             <div key={index} className='column is-12'>
-              <Project {...project} routeParams={routeParams} />
+              <Project {...project} />
             </div>
           )
         )}
@@ -43,7 +43,8 @@ ProjectsList.propTypes = {
     id:   PropTypes.number.isRequired,
     name: PropTypes.string.isRequired
   })).isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  loadProjects: PropTypes.func.isRequired
 }
 
 export default ProjectsList

@@ -54,7 +54,7 @@ export const loadProjects = () =>
   dispatch => {
     dispatch(projectsLoadRequest())
     dispatch(makeRequest(
-      'http://127.0.0.1:4000/api/v1/projects',
+      '/api/v1/projects',
       { success: loadProjectsRequestSuccess, failure: loadProjectsRequestFailure }
     ))
   }
@@ -72,7 +72,7 @@ const createProjectRequestFailure = (error) => {
 // createProject action to create project for the current user
 export const createProject = (data) =>
   makeRequest(
-    'http://127.0.0.1:4000/api/v1/projects',
+    '/api/v1/projects',
     { success: createProjectRequestSuccess, failure: createProjectRequestFailure },
     'post',
     data
@@ -91,7 +91,7 @@ const updateProjectRequestFailure = (error) => {
 // updateProject action to patch a project
 export const updateProject = (data) =>
   makeRequest(
-    `http://127.0.0.1:4000/api/v1/projects/${data.id}`,
+    `/api/v1/projects/${data.id}`,
     { success: updateProjectRequestSuccess, failure: updateProjectRequestFailure },
     'patch',
     data
@@ -107,7 +107,7 @@ const desrtoyProjectFailure = (error) => {
 // destroyProject action to delete a project
 export const destroyProject = (data) => (
   makeRequest(
-    `http://127.0.0.1:4000/api/v1/projects/${data}`,
+    `/api/v1/projects/${data}`,
     { success: desrtoyProjectSuccess(data), failure: desrtoyProjectFailure },
     'delete'
   )

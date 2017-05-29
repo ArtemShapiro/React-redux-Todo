@@ -2,9 +2,10 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
 import Task from '../../components/tasks/Task'
+import { showModal } from '../../actions/modal'
 import { destroyTask, updateTask } from '../../actions/tasks'
 
-const getEditableTask = ({task, routeParams}) => {
+const getEditableTask = (routeParams, task) => {
   if (routeParams) {
     return (`${task.projectId}` === routeParams.id) && (`${task.id}` === routeParams.task_id)
   }
@@ -13,7 +14,7 @@ const getEditableTask = ({task, routeParams}) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    editable: getEditableTask(ownProps),
+    editable: getEditableTask(state.routeParams, ownProps.task),
     deadline: (ownProps.task.deadline) ? (new Date(ownProps.task.deadline)).toDateString() : ''
   }
 }
@@ -27,6 +28,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   onCheckboxClick: () => {
     dispatch(updateTask({...ownProps.task, done: !ownProps.task.done}))
+  },
+  onMoreInfoClick: () => {
+    dispatch(showModal(ownProps.task))
   }
 })
 

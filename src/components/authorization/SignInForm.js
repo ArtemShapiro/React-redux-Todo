@@ -1,3 +1,5 @@
+/* global process */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router'
@@ -13,6 +15,7 @@ import MaterialUiInput from '../global/MaterialUiInput'
 import {required, email, passwordLength} from '../global/validators'
 
 const SignInForm = ({handleSubmit, error}) => {
+  const url = process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/facebook?origin=' + process.env.REACT_APP_FRONTEND_URL
   return (
     <Paper zDepth={2}>
       <div className='form'>
@@ -32,7 +35,7 @@ const SignInForm = ({handleSubmit, error}) => {
           </div>
 
           <div className='form-button-facebook'>
-            <RaisedButton label='Facebook' backgroundColor={'#4267b2'} labelColor={'#FAFAFA'} icon={<LoginIcon />} href='http://127.0.0.1:4000/api/v1/auth/facebook?origin=http://localhost:3000' />
+            <RaisedButton label='Facebook' backgroundColor={'#4267b2'} labelColor={'#FAFAFA'} icon={<LoginIcon />} href={url} />
           </div>
         </form>
         <FormError error={error} title={'Sign In Error'} />

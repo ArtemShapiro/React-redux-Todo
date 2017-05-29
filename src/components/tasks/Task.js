@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { SortableElement } from 'react-sortable-hoc'
 
-import TaskDialog from './TaskDialog'
 import UpdateTaskForm from '../../containers/tasks/UpdateTaskForm'
 
 import {ListItem} from 'material-ui/List'
@@ -20,42 +19,27 @@ const IconButtonElement = (
   </IconButton>
 )
 
-class TaskElement extends Component {
-  state = {
-    open: false,
-  }
-
-  handleOpen = () => {
-    this.setState({open: true});
-  };
-
-  handleClose = () => {
-    this.setState({open: false});
-  };
-
-  render() {
-    return (
-      <div>
-        <ListItem leftCheckbox={<Checkbox checked={this.props.done} onTouchTap={this.props.onCheckboxClick} />} primaryText={this.props.name} secondaryText={this.props.deadline || ''}
-          rightIconButton={
-            <IconMenu iconButtonElement={IconButtonElement}>
-              <MenuItem onTouchTap={this.handleOpen}>More Info</MenuItem>
-              <MenuItem onTouchTap={this.props.onUpdateTaskClick}>Edit Task</MenuItem>
-              <MenuItem onTouchTap={this.props.onDeleteClick}>Delete Task</MenuItem>
-            </IconMenu>
-          }
-        />
-      <TaskDialog  handleOpen={this.handleOpen} handleClose={this.handleClose} open={this.state.open} name={this.props.name} id={this.props.id} />
-      </div>
-    )
-  }
+const TaskElement = ({task, deadline, onUpdateTaskClick, onDeleteClick, onMoreInfoClick, onCheckboxClick}) => {
+  return (
+    <div>
+      <ListItem leftCheckbox={<Checkbox checked={task.done} onTouchTap={onCheckboxClick} />} primaryText={task.name} secondaryText={deadline || ''}
+        rightIconButton={
+          <IconMenu iconButtonElement={IconButtonElement}>
+            <MenuItem onTouchTap={onMoreInfoClick}>More Info</MenuItem>
+            <MenuItem onTouchTap={onUpdateTaskClick}>Edit Task</MenuItem>
+            <MenuItem onTouchTap={onDeleteClick}>Delete Task</MenuItem>
+          </IconMenu>
+        }
+      />
+    </div>
+  )
 }
 
 
 const WrappedTaskElement = SortableElement((props) => <TaskElement {...props} />)
 
-const Task = ({task, deadline, onDeleteClick, onUpdateTaskClick, onCheckboxClick, editable, index}) => {
-  const props = {...task, onDeleteClick, onUpdateTaskClick, onCheckboxClick, index, deadline}
+const Task = ({task, deadline, onDeleteClick, onUpdateTaskClick, onCheckboxClick, onMoreInfoClick, editable, index}) => {
+  const props = {task, onDeleteClick, onUpdateTaskClick, onCheckboxClick, onMoreInfoClick, index, deadline}
   const form = (<UpdateTaskForm {...task} />)
   const taskElement = task.done ? (<TaskElement  {...props} />) : (<WrappedTaskElement  {...props} />)
   return editable ? form : taskElement

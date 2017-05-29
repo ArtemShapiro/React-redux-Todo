@@ -5,7 +5,7 @@ import { destroyProject } from '../../actions/projects'
 import Project from '../../components/projects/Project'
 
 const mapStateToProps = (state, ownProps) => ({
-  editable: (`${ownProps.id}` === ownProps.routeParams.id) && !ownProps.routeParams.task_id
+  editable: (`${ownProps.id}` === state.routeParams.id) && !state.routeParams.task_id
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

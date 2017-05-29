@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
 import FlatButton from 'material-ui/FlatButton'
@@ -9,6 +10,10 @@ const SignOutButton = ({signOut}) => {
   return (
     <FlatButton label='Sign out' onTouchTap={signOut}/>
   )
+}
+
+SignOutButton.propTypes = {
+  signOut: PropTypes.func.isRequired
 }
 
 const mapDispatchToProps = {

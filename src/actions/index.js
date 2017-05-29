@@ -1,3 +1,5 @@
+/* global process */
+
 import axios from 'axios'
 import * as Cookies from 'js-cookie'
 
@@ -17,15 +19,15 @@ export const setToken = (headers) =>
     dispatch(setHeaders(headers))
   }
 
-export const makeRequest = (url, actions = {}, method = 'get', data = false) =>
+export const makeRequest = (endpoint, actions = {}, method = 'get', data = false) =>
   (dispatch, getState) => {
+    const url = process.env.REACT_APP_BACKEND_URL + endpoint
     return axios({
       url,
       data,
       method,
       headers: {...getState().headers}
     }).then(response => {
-      console.log(response)
       if (response.headers.uid) {
         dispatch(setToken(response.headers))
       }

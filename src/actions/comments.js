@@ -9,13 +9,14 @@ const addComment = (data) => ({
   comment: {
     id:     data.id,
     text:   data.text,
+    createdAt: data.created_at,
     taskId: data.task_id
   }
 })
 
 const addComments = (data) => ({
   type: 'ADD_COMMENTS',
-  comments: data.comments.map(comment => ({id: comment.id, text: comment.text, taskId: comment.task_id}))
+  comments: data.comments.map(comment => ({id: comment.id, text: comment.text, createdAt: comment.created_at, taskId: comment.task_id}))
 })
 
 const deleteComment = (id) => ({
@@ -52,7 +53,7 @@ export const loadComments = (data) =>
   dispatch => {
     dispatch(commentsLoadRequest())
     dispatch(makeRequest(
-      `http://127.0.0.1:4000/api/v1/tasks/${data.id}/comments`,
+      `/api/v1/tasks/${data.id}/comments`,
       { success: loadCommentsRequestSuccess, failure: loadCommentsRequestFailure }
     ))
   }
@@ -70,7 +71,7 @@ const createCommentRequestFailure = (error) => {
 // createComment action to create comment for task
 export const createComment = (data) => {
   return makeRequest(
-    `http://127.0.0.1:4000/api/v1/tasks/${data.taskId}/comments`,
+    `/api/v1/tasks/${data.taskId}/comments`,
     { success: createCommentRequestSuccess, failure: createCommentRequestFailure },
     'post',
     data
@@ -87,7 +88,7 @@ const destroyCommentRequestFailure = (error) => {
 // destroyComment action to delete comment
 export const destroyComment = (data) =>
   makeRequest(
-    `http://127.0.0.1:4000/api/v1/comments/${data.id}`,
+    `/api/v1/comments/${data.id}`,
     { success: destroyCommentRequestSuccess(data.id), failure: destroyCommentRequestFailure },
     'delete'
   )

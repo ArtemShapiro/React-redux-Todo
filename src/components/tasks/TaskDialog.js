@@ -7,13 +7,13 @@ import FlatButton from 'material-ui/FlatButton'
 import AddCommentForm from '../../containers/comments/AddCommentForm'
 import CommentsList from '../../containers/comments/CommentsList'
 
-const TaskDialog = ({id, name, handleClose, open}) => {
+const TaskDialog = ({open, name, id, closeModal}) => {
   const actions = [
     <FlatButton
       label="Close"
       primary={true}
       keyboardFocused={true}
-      onTouchTap={handleClose}
+      onTouchTap={closeModal}
     />,
   ]
 
@@ -24,7 +24,7 @@ const TaskDialog = ({id, name, handleClose, open}) => {
       modal={false}
       actions={actions}
       autoScrollBodyContent
-      onRequestClose={handleClose}
+      onRequestClose={closeModal}
     >
       <CommentsList id={id} />
       <AddCommentForm id={id} />
@@ -33,10 +33,10 @@ const TaskDialog = ({id, name, handleClose, open}) => {
 }
 
 TaskDialog.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
+  name: PropTypes.string,
   open: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired,
-  handleClose: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
 }
 
 export default TaskDialog

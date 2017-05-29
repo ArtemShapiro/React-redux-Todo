@@ -3,8 +3,8 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
 
-import { routerMiddleware } from 'react-router-redux'
 import { Router, Route, hashHistory, IndexRedirect } from 'react-router'
+import { routerMiddleware } from 'react-router-redux'
 
 import * as Cookies from 'js-cookie'
 import ReduxThunk from 'redux-thunk'
@@ -13,7 +13,7 @@ import logger from 'redux-logger'
 import AppLayout from './components/AppLayout'
 import FormLayout from './components/global/FormLayout'
 
-import App from './components/projects/App'
+import App from './containers/projects/App'
 
 import SignInForm from './containers/authorization/SignInForm'
 import SignUpForm from './containers/authorization/SignUpForm'
@@ -58,19 +58,19 @@ render(
       <Route path='/' component={AppLayout}>
         <Route onEnter={authorized}>
           <Route component={ProjectsLayout}>
-            <IndexRedirect to='/projects' />
-            <Route path='/projects(/:id)(/tasks/:task_id)' component={App} />
+            <IndexRedirect to='projects' />
+            <Route path='projects(/:id)(/tasks/:task_id)' component={App} />
           </Route>
 
           <Route component={FormLayout}>
-            <Route path='/project/new' component={AddProjectForm} />
-            <Route path='/projects/:id/task/new' component={AddTaskForm} />
+            <Route path='project/new' component={AddProjectForm} />
+            <Route path='projects/:id/task/new' component={AddTaskForm} />
           </Route>
         </Route>
 
         <Route component={FormLayout}>
-          <Route path='/sign-in' component={SignInForm} />
-          <Route path='/sign-up' component={SignUpForm} />
+          <Route path='sign-in' component={SignInForm} />
+          <Route path='sign-up' component={SignUpForm} />
         </Route>
       </Route>
     </Router>

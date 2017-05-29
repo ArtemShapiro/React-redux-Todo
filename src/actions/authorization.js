@@ -22,7 +22,7 @@ const signInRequestFailure = (error) => {
 
 export const signIn = (data) => (
   makeRequest(
-    'http://127.0.0.1:4000/api/v1/auth/sign_in',
+    '/api/v1/auth/sign_in',
     { success: signInRequestSuccess, failure: signInRequestFailure },
     'post',
     data
@@ -43,7 +43,7 @@ const signUpRequestFailure = (error) => {
 
 export const signUp = (data) => (
   makeRequest(
-    'http://127.0.0.1:4000/api/v1/auth',
+    '/api/v1/auth',
     { success: signUpRequestSuccess, failure: signUpRequestFailure },
     'post',
     {...data, password_confirmation: data.passwordConfirmation}
@@ -62,13 +62,13 @@ const signOutRequestFailure = (error) => { throw error }
 
 export const signOut = () => (
   makeRequest(
-    'http://127.0.0.1:4000/api/v1/auth/sign_out',
+    '/api/v1/auth/sign_out',
     { success: signOutRequestSuccess, failure: signOutRequestFailure },
     'delete'
   )
 )
 
-const validateTokenSuccess = (data) => {
+const validateTokenSuccess = () => {
   return replace('/')
 }
 
@@ -86,7 +86,7 @@ const validateTokenFailure = (error) => {
 
 export const validateToken = () => (
   makeRequest(
-    'http://127.0.0.1:4000/api/v1/auth/validate_token',
+    '/api/v1/auth/validate_token',
     { success: validateTokenSuccess, failure: validateTokenFailure }
   )
 )

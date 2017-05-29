@@ -18,18 +18,16 @@ const IconButtonElement = (
 )
 
 
-const Comment = ({text, onDeleteClick, attachment}) => {
-  let link
-  if(attachment) link = `http://127.0.0.1:4000${attachment.file.url}`
+const Comment = ({text, createdAt, onDeleteClick, link}) => {
   return(
     <div>
       <ListItem
         disabled
         style={{'whiteSpace': 'pre-line'}}
-        secondaryText={'created at 22:00'}
+        secondaryText={createdAt}
         rightIconButton={
           <IconMenu iconButtonElement={IconButtonElement}>
-            <MenuItem><a target="_blank" download href={link} style={{color: 'black', textDecoration: 'none'}}>{(attachment) ? 'Attachment' : 'No attachment'}</a></MenuItem>
+            <MenuItem><a target="_blank" download href={link} style={{color: 'black', textDecoration: 'none'}}>{(link) ? 'Attachment' : 'No attachment'}</a></MenuItem>
             <MenuItem onTouchTap={onDeleteClick}>Delete comment</MenuItem>
           </IconMenu>
         }>
@@ -42,8 +40,9 @@ const Comment = ({text, onDeleteClick, attachment}) => {
 
 Comment.propTypes = {
   text: PropTypes.string.isRequired,
+  link: PropTypes.string,
+  createdAt: PropTypes.string,
   onDeleteClick: PropTypes.func.isRequired,
-  attachment: PropTypes.object
 }
 
 export default Comment

@@ -21,7 +21,7 @@ const IconButtonElement = (
   </IconButton>
 )
 
-const Project = ({name, id, onDeleteClick, onAddTaskClick, onUpdateProjectClick, editable, routeParams}) => {
+const Project = ({name, id, onDeleteClick, onAddTaskClick, onUpdateProjectClick, editable}) => {
   const headerElement = (
     <ListItem primaryText={name} disabled rightIconButton={
       <IconMenu iconButtonElement={IconButtonElement}>
@@ -38,7 +38,7 @@ const Project = ({name, id, onDeleteClick, onAddTaskClick, onUpdateProjectClick,
       <List>
         {header}
         <Divider/>
-        <TasksList projectId={id} routeParams={routeParams} />
+        <TasksList projectId={id} />
       </List>
     </Paper>
   )

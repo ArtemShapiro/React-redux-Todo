@@ -39,7 +39,7 @@ export const createAttachment = (data) =>
     formData.append('file', data)
     dispatch(attachmentsLoadRequest())
     dispatch(makeRequest(
-      'http://127.0.0.1:4000/api/v1/attachments',
+      '/api/v1/attachments',
       { success: createAttachmentRequestSuccess, failure: createAttachmentRequestFailure },
       'post',
       formData

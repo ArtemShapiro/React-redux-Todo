@@ -58,7 +58,7 @@ const createTaskRequestFailure = (error) => {
 // createTask action to create task for the project
 export const createTask = (data) =>
   makeRequest(
-    `http://127.0.0.1:4000/api/v1/projects/${data.projectId}/tasks`,
+    `/api/v1/projects/${data.projectId}/tasks`,
     { success: createTaskRequestSuccess, failure: createTaskRequestFailure },
     'post',
     data
@@ -77,7 +77,7 @@ const updateTaskRequestFailure = (error) => {
 // updateTask action to update task for the project
 export const updateTask = (data) =>
   makeRequest(
-    `http://127.0.0.1:4000/api/v1/tasks/${data.id}`,
+    `/api/v1/tasks/${data.id}`,
     { success: updateTaskRequestSuccess, failure: updateTaskRequestFailure },
     'patch',
     data
@@ -93,12 +93,12 @@ const destroyTaskRequestFailure = (error) => {
 // destroyTask action to delete task for the project
 export const destroyTask = (data) =>
   makeRequest(
-    `http://127.0.0.1:4000/api/v1/tasks/${data.id}`,
+    `/api/v1/tasks/${data.id}`,
     { success: destroyTaskRequestSuccess(data.id), failure: destroyTaskRequestFailure },
     'delete'
   )
 
-export const swapPriority = (tasks, newIndex) =>
+export const updatePriority = (tasks, newIndex) =>
   dispatch => {
     tasks.forEach((task, index) => {
       dispatch(patchTask({id: task.id, name: task.name, done: task.done, deadline: task.deadline, priority: index, project_id: task.projectId}))
