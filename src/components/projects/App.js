@@ -12,10 +12,14 @@ class App extends Component  {
 
   render(){
     return (
-      <div className='h-100'>
-        <ProjectsList />
-        <AddProject />
-        <TaskDialog />
+      <div className='columns app-content h-100'>
+        <div className='column is-4 is-offset-4 h-100'>
+          <div className='h-100'>
+            <ProjectsList />
+            <AddProject />
+            <TaskDialog />
+          </div>
+        </div>
       </div>
     )
   }

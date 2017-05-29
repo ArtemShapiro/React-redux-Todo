@@ -60,12 +60,13 @@ render(
           <Route component={ProjectsLayout}>
             <IndexRedirect to='projects' />
             <Route path='projects(/:id)(/tasks/:task_id)' component={App} />
+
+            <Route component={FormLayout}>
+              <Route path='project/new' component={AddProjectForm} />
+              <Route path='projects/:id/task/new' component={AddTaskForm} />
+            </Route>
           </Route>
 
-          <Route component={FormLayout}>
-            <Route path='project/new' component={AddProjectForm} />
-            <Route path='projects/:id/task/new' component={AddTaskForm} />
-          </Route>
         </Route>
 
         <Route component={FormLayout}>
