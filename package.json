@@ -30,12 +30,11 @@
   },
   "scripts": {
     "start": "REACT_APP_BACKEND_URL=http://localhost:4000 REACT_APP_FRONTEND_URL=http://localhost:3000 react-scripts start",
-    "build": "REACT_APP_BACKEND_URL=https://rails-todo-backend.herokuapp.com REACT_APP_FRONTEND_URL=https://artemshapiro.github.io/react-redux-todo react-scripts build",
+    "build": "REACT_APP_BACKEND_URL=https://rails-todo-backend.herokuapp.com REACT_APP_FRONTEND_URL=https://artemshapiro.github.io/React-redux-Todo react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "main": "index.js",
-  "homepage": "https://artemshapiro.github.io/react-redux-todo"
+  "homepage": "https://artemshapiro.github.io/React-redux-Todo"
 }
