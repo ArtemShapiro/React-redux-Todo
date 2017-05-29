@@ -13,13 +13,19 @@ class CommentsList extends Component{
 
   render(){
     const { comments, loading } = this.props
+    const child = (comments.length > 0) ? (
+      <List className='comments-container'>
+        {comments.map((comment, index) => (
+          <Comment key={index} {...comment} />
+        ))}
+      </List>) : (
+        <div className='no-comments-container'>
+          <div className='no-comments-label'>You do not have any comments yet.</div>
+        </div>
+      )
     return (
       <Spinner loading={loading}>
-        <List className='comments-container'>
-          {comments.map((comment, index) => (
-            <Comment key={index} {...comment} />
-          ))}
-        </List>
+        {child}
       </Spinner>
     )
   }

@@ -59,6 +59,16 @@ body {
   font-family: 'Roboto', sans-serif
 }
 
+.no-comments-container {
+  display: flex;
+  justify-content: center;
+}
+
+.no-comments-label {
+  font-size: 20px;
+  padding: 10px;
+}
+
 .project {
   padding: 12px;
 }

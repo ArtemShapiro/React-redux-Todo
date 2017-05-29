@@ -12,7 +12,8 @@ const getAttachmentLink = (attachments, id) => {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  link: getAttachmentLink(state.attachments, ownProps.id)
+  link: getAttachmentLink(state.attachments, ownProps.id),
+  createdAt: (new Date(ownProps.createdAt)).toDateString()
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

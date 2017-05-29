@@ -24,7 +24,7 @@ const Comment = ({text, createdAt, onDeleteClick, link}) => {
       <ListItem
         disabled
         style={{'whiteSpace': 'pre-line'}}
-        secondaryText={createdAt}
+        secondaryText={`Created at: ${createdAt}`}
         rightIconButton={
           <IconMenu iconButtonElement={IconButtonElement}>
             <MenuItem><a target="_blank" download href={link} style={{color: 'black', textDecoration: 'none'}}>{(link) ? 'Attachment' : 'No attachment'}</a></MenuItem>
