@@ -8,7 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
 
 import MaterialUiInput from '../global/MaterialUiInput'
-import {required} from '../global/validators'
+import { required, nameLength } from '../global/validators'
 
 const AddTaskForm = ({handleSubmit, onCancel}) => (
   <Paper zDepth={2}>
@@ -17,7 +17,7 @@ const AddTaskForm = ({handleSubmit, onCancel}) => (
         <h3 className='header-container'>Add Task</h3>
 
         <div>
-          <Field name='name' type='text' label='Task name' placeholder='Buy milk' component={MaterialUiInput} validate={required} />
+          <Field name='name' type='text' label='Task name' placeholder='Buy milk' component={MaterialUiInput} validate={[required, nameLength]} />
         </div>
 
         <div className='form-button'>

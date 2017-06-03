@@ -11,7 +11,7 @@ import {white800} from 'material-ui/styles/colors'
 import {red800} from 'material-ui/styles/colors'
 
 import MaterialUiInput from '../global/MaterialUiInput'
-import {required} from '../global/validators'
+import { required, nameLength } from '../global/validators'
 
 const UpdateProjectForm = ({handleSubmit, onCancel, name}) => {
   return (
@@ -19,7 +19,7 @@ const UpdateProjectForm = ({handleSubmit, onCancel, name}) => {
       <form onSubmit={handleSubmit}>
           <div className='form-container'>
             <div className='w-100'>
-              <Field name='name' type='text' label='Project name' placeholder='Project' defaultValue={name} component={MaterialUiInput} validate={required}/>
+              <Field name='name' type='text' label='Project name' placeholder='Project' defaultValue={name} component={MaterialUiInput} validate={[required, nameLength]}/>
             </div>
 
             <div className='project-button-container'>

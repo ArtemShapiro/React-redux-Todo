@@ -1,12 +1,7 @@
-import * as Cookies from 'js-cookie'
 import { replace } from 'react-router-redux'
 import { SubmissionError } from 'redux-form'
 
-import { makeRequest } from './index'
-
-const removeHeaders = () => ({
-  type: 'REMOVE_HEADERS'
-})
+import { makeRequest, deleteToken } from './index'
 
 const signInRequestSuccess = () =>
   (dispatch) => {
@@ -51,11 +46,7 @@ export const signUp = (data) => (
 )
 
 const signOutRequestSuccess = () => (
-  (dispatch) => {
-    Cookies.remove('token')
-    dispatch(removeHeaders())
-    dispatch(replace('/sign-in'))
-  }
+  deleteToken()
 )
 
 const signOutRequestFailure = (error) => { throw error }
@@ -73,13 +64,6 @@ const validateTokenSuccess = () => {
 }
 
 const validateTokenFailure = (error) => {
-  if (error.response.status === 401) {
-    return dispatch => {
-      Cookies.remove('token')
-      dispatch(removeHeaders())
-      dispatch(replace('/sign-in'))
-    }
-  }
   throw error
 }
 

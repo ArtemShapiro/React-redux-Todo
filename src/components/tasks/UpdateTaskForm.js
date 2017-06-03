@@ -10,7 +10,7 @@ import ActionClear from 'material-ui/svg-icons/content/clear'
 import {white800} from 'material-ui/styles/colors'
 import {red800} from 'material-ui/styles/colors'
 
-import {required} from '../global/validators'
+import { required, nameLength } from '../global/validators'
 import MaterialUiInput from '../global/MaterialUiInput'
 import MaterialUiDatePicker from '../global/MaterialUiDatePicker'
 
@@ -20,7 +20,7 @@ const UpdateTaskForm = ({handleSubmit, onCancel, name, deadline}) => (
         <div className='form-container'>
           <div className='w-100'>
             <div>
-              <Field name='name' type='text' label='Task name' placeholder='Task' defaultValue={name} component={MaterialUiInput} validate={required}/>
+              <Field name='name' type='text' label='Task name' placeholder='Task' defaultValue={name} component={MaterialUiInput} validate={[required, nameLength]}/>
             </div>
             <div>
               <Field name='date' defaultValue={deadline} component={MaterialUiDatePicker} />

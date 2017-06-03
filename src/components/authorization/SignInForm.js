@@ -30,12 +30,12 @@ const SignInForm = ({handleSubmit, error}) => {
           </div>
 
           <div className='form-button'>
-            <FlatButton containerElement={<Link to='/sign-up' />} label='Sign up' />
+            <RaisedButton label='Facebook' backgroundColor={'#4267b2'} labelColor={'#FAFAFA'} icon={<LoginIcon />} href={url} />
             <RaisedButton label='Sign in' primary type='submit' icon={<LoginIcon />} />
           </div>
 
-          <div className='form-button-facebook'>
-            <RaisedButton label='Facebook' backgroundColor={'#4267b2'} labelColor={'#FAFAFA'} icon={<LoginIcon />} href={url} />
+          <div className='form-button'>
+            <FlatButton containerElement={<Link to='/sign-up' />} label='Sign up' />
           </div>
         </form>
         <FormError error={error} title={'Sign In Error'} />

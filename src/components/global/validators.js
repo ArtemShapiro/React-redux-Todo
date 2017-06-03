@@ -6,3 +6,6 @@ export const email = value =>
 
 export const passwordLength = value =>
   (value.length < 8) ? 'Password is too short' : undefined
+
+export const nameLength = value =>
+  (value.length > 48) ? 'Name is too long' : undefined

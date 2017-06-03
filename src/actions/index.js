@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 import * as Cookies from 'js-cookie'
+import { replace } from 'react-router-redux'
 
 export const setHeaders = (headers) => ({
   type: 'SET_HEADERS',
@@ -13,10 +14,21 @@ export const setHeaders = (headers) => ({
   }
 })
 
+const removeHeaders = () => ({
+  type: 'REMOVE_HEADERS'
+})
+
 export const setToken = (headers) =>
   (dispatch) => {
     Cookies.set('token', headers)
     dispatch(setHeaders(headers))
+  }
+
+export const deleteToken = () =>
+  (dispatch) => {
+    Cookies.remove('token')
+    dispatch(removeHeaders())
+    dispatch(replace('/sign-in'))
   }
 
 export const makeRequest = (endpoint, actions = {}, method = 'get', data = false) =>
@@ -33,6 +45,8 @@ export const makeRequest = (endpoint, actions = {}, method = 'get', data = false
       }
       dispatch(actions.success(response.data))
     }).catch(error => {
+      if (error.response && error.response.status === 401) dispatch(deleteToken())
+      if (error.response && error.response.headers.uid) dispatch(setToken(error.response.headers))
       dispatch(actions.failure(error))
     })
   }

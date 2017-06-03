@@ -8,7 +8,7 @@ import SendIcon from 'material-ui/svg-icons/content/send'
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
 
-import {required} from '../global/validators'
+import { required, nameLength } from '../global/validators'
 import MaterialUiInput from '../global/MaterialUiInput'
 
 const AddProjectForm = ({handleSubmit}) => (
@@ -18,7 +18,7 @@ const AddProjectForm = ({handleSubmit}) => (
         <h3 className='header-container'>Add Project</h3>
 
         <div>
-          <Field name='name' type='text' label='Project name' placeholder='Project' component={MaterialUiInput} validate={required} />
+          <Field name='name' type='text' label='Project name' placeholder='Project' component={MaterialUiInput} validate={[required, nameLength]} />
         </div>
 
         <div className='form-button'>

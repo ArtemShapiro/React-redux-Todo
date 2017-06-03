@@ -30,7 +30,7 @@ const Project = ({name, id, onDeleteClick, onAddTaskClick, onUpdateProjectClick,
         <MenuItem onTouchTap={onDeleteClick}>Delete project</MenuItem>
       </IconMenu>
     }>
-      {name} 
+      {name}
     </ListItem>
   )
   const form = (<UpdateProjectForm name={name} id={id} />)
