@@ -74,7 +74,7 @@ export const createComment = (data) => {
     `/api/v1/tasks/${data.taskId}/comments`,
     { success: createCommentRequestSuccess, failure: createCommentRequestFailure },
     'post',
-    data
+    {...data, attachment_id: data.file }
   )
 }
 

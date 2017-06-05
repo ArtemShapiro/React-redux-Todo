@@ -41,8 +41,8 @@ const projectsLoadRequest = () => ({
 
 const loadProjectsRequestSuccess = (data) =>
   dispatch => {
-    dispatch(addProjects(data))
-    dispatch(addTasks(flatten(data.map(project => project.tasks))))
+    dispatch(addProjects(data.projects))
+    dispatch(addTasks(flatten(data.projects.map(project => project.tasks))))
   }
 
 const loadProjectsRequestFailure = (error) => {
