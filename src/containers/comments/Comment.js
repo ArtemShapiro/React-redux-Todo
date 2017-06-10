@@ -1,5 +1,3 @@
-/* global process */
-
 import { connect } from 'react-redux'
 import { find } from 'lodash'
 
@@ -8,7 +6,7 @@ import Comment from '../../components/comments/Comment'
 
 const getAttachmentLink = (attachments, id) => {
   const attachment = find(attachments.data, (attachment) => attachment.comment_id === id)
-  return (attachment) ? (process.env.REACT_APP_BACKEND_URL + attachment.file.url) : undefined
+  return (attachment) ? (attachment.file.url) : undefined
 }
 
 const mapStateToProps = (state, ownProps) => ({
