@@ -8,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
 
 import MaterialUiInput from '../global/MaterialUiInput'
+import MaterialUiDatePicker from '../global/MaterialUiDatePicker'
 import { required, nameLength } from '../global/validators'
 
 const AddTaskForm = ({handleSubmit, onCancel}) => (
@@ -18,6 +19,10 @@ const AddTaskForm = ({handleSubmit, onCancel}) => (
 
         <div>
           <Field name='name' type='text' label='Task name' placeholder='Buy milk' component={MaterialUiInput} validate={[required, nameLength]} />
+        </div>
+
+        <div>
+          <Field name='date' component={MaterialUiDatePicker} />
         </div>
 
         <div className='form-button'>

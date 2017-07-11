@@ -24,7 +24,7 @@ class CommentsList extends Component{
         </div>
       )
     return (
-      <Spinner loading={loading}>
+      <Spinner loading={loading} size={72} thickness={5}>
         {child}
       </Spinner>
     )

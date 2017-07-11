@@ -1,3 +1,4 @@
+import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 
 import { signUp } from '../../actions/authorization'
@@ -7,5 +8,9 @@ const onSubmit = (values, dispatch) => (
   dispatch(signUp(values))
 )
 
+const mapStateToProps = (state) => ({
+  loading: state.users.loading
+})
+
 let signUpForm = reduxForm({form: 'signUp', onSubmit})(SignUpForm)
-export default signUpForm
+export default connect(mapStateToProps)(signUpForm)

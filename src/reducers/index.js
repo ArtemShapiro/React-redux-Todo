@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
+import users from './users'
 import tasks from './tasks'
 import modal from './modal'
 import headers from './headers'
@@ -10,6 +11,7 @@ import routeParams from './routeParams'
 import attachments from './attachments'
 
 const todoApp = combineReducers({
+  users,
   tasks,
   modal,
   headers,

@@ -8,12 +8,12 @@ import SendIcon from 'material-ui/svg-icons/content/send'
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
 
+import Spinner from '../global/Spinner'
 import FormError from '../global/FormError'
 import MaterialUiInput from '../global/MaterialUiInput'
 import {required, email, passwordLength} from '../global/validators'
 
-// Create modal with error
-const SignUpForm = ({handleSubmit, error}) => (
+const SignUpForm = ({handleSubmit, error, loading}) => (
   <Paper zDepth={2}>
     <div className='form'>
       <form onSubmit={handleSubmit}>
@@ -28,10 +28,13 @@ const SignUpForm = ({handleSubmit, error}) => (
         <div>
           <Field type='password' name='passwordConfirmation' label='Confirm Password' placeholder='12345678' component={MaterialUiInput} validate={[required, passwordLength]}/>
         </div>
-        <div className='form-button'>
-          <FlatButton containerElement={<Link to='/sign-in' />} label='Sign in' />
-          <RaisedButton label='Sign up' primary type='submit' icon={<SendIcon />} />
-        </div>
+
+        <Spinner loading={loading} size={28} thickness={3}>
+          <div className='form-button'>
+            <FlatButton containerElement={<Link to='/sign-in' />} label='Sign in' />
+            <RaisedButton label='Sign up' primary type='submit' icon={<SendIcon />} />
+          </div>
+        </Spinner>
       </form>
       <FormError error={error} title={'Sign Up Error'} />
     </div>
@@ -40,6 +43,7 @@ const SignUpForm = ({handleSubmit, error}) => (
 
 SignUpForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
   error: PropTypes.string
 }
 
